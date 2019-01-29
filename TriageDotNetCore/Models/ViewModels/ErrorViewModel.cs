@@ -1,6 +1,4 @@
-using System;
-
-namespace TriageDotNetCore.Models
+namespace TriageDotNetCore.Models.ViewModels
 {
     public class ErrorViewModel
     {
