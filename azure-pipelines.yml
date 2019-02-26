@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'pwtriageit/hello-world:$(build.buildId)'
+  imageName: 'pwtriageit/triagedotnetcore:$(build.buildId)'
 
 steps:
 - script: docker login -u $(dockerId) -p $(dockerPassword)
