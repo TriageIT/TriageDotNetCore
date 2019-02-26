@@ -11,8 +11,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TriageDotNetCore.Models;
+using TriageDotNetCore.Models.Db;
 
 namespace TriageDotNetCore
 {
@@ -38,9 +41,12 @@ namespace TriageDotNetCore
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
+            services.AddDbContext<EmployeeDbContext>(options =>
+	            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
+                AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
