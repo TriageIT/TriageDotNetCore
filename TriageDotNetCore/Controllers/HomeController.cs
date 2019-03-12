@@ -5,7 +5,7 @@ using TriageDotNetCore.Models.ViewModels;
 
 namespace TriageDotNetCore.Controllers
 {
-    [Authorize]
+//    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()

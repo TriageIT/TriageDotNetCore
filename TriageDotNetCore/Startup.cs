@@ -38,18 +38,18 @@ namespace TriageDotNetCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-                .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+//            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+//                .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
             services.AddDbContext<EmployeeDbContext>(options =>
 	            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc(options =>
             {
-                AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+//                AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
+//                    .RequireAuthenticatedUser()
+//                    .Build();
+//                options.Filters.Add(new AuthorizeFilter(policy));
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -71,7 +71,7 @@ namespace TriageDotNetCore
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseAuthentication();
+//            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
