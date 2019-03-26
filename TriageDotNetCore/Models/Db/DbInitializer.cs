@@ -46,7 +46,7 @@ namespace TriageDotNetCore.Models.Db
 			    {
 				    FirstName = "Paul",
 				    LastName = "Willems",
-				    StartDate = DateTime.MinValue,
+				    StartDate = DateTime.Today,
 			    }
 		    };
 		    dbContext.Employees.AddRange(employees);
