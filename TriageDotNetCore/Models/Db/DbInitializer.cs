@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace TriageDotNetCore.Models.Db
 {
@@ -11,46 +9,66 @@ namespace TriageDotNetCore.Models.Db
 	    {
 		    dbContext.Database.EnsureCreated();
 
-		    if (!dbContext.Roles.Any())
+		    CreateRoles(dbContext);
+		    CreateEmployees(dbContext);
+            CreateRoleAssignments(dbContext);
+	    }
+
+	    private static void CreateRoleAssignments(EmployeeDbContext dbContext)
+	    {
+		    if (dbContext.RoleAssignments.Any())
 		    {
-			    var roles = new[]
-			    {
-				    new Role {RoleName = "Baas"},
-				    new Role {RoleName = "Tester"},
-				    new Role {RoleName = "Ontwikkelaar"},
-				    new Role {RoleName = "Projectmanager"}
-			    };
-
-			    foreach (Role role in roles)
-			    {
-				    dbContext.Roles.Add(role);
-			    }
-
-			    dbContext.SaveChanges();
+			    return;
 		    }
 
+		    Employee paul = dbContext.Employees.First(employee => employee.FirstName == "paul");
+		    Role baasRole = dbContext.Roles.First(role => role.RoleName == "Baas");
+
+		    var roleAssignments = new[]
+		    {
+			    new RoleAssignment {EmployeeId = paul.Id, RoleId = baasRole.Id}
+		    };
+
+		    dbContext.RoleAssignments.AddRange(roleAssignments);
+		    dbContext.SaveChanges();
+	    }
+
+        private static void CreateEmployees(EmployeeDbContext dbContext)
+	    {
 		    if (dbContext.Employees.Any())
 		    {
 			    return;
 		    }
 
-		    var paul = new Employee
+		    Employee[] employees =
 		    {
-			    FirstName = "Paul",
-			    LastName = "Willems",
-			    StartDate = DateTime.MinValue,
-				Roles = new List<Role>()
+			    new Employee
+			    {
+				    FirstName = "Paul",
+				    LastName = "Willems",
+				    StartDate = DateTime.MinValue,
+			    }
 		    };
+		    dbContext.Employees.AddRange(employees);
+		    dbContext.SaveChanges();
+	    }
 
-		    paul.Roles.Add(dbContext.Roles.First(role => role.RoleName == "Baas"));
-
-            Employee[] employees = { paul };
-
-		    foreach (Employee employee in employees)
+	    private static void CreateRoles(EmployeeDbContext dbContext)
+	    {
+		    if (dbContext.Roles.Any())
 		    {
-			    dbContext.Employees.Add(employee);
+			    return;
 		    }
 
+		    var roles = new[]
+		    {
+			    new Role {RoleName = "Baas"},
+			    new Role {RoleName = "Tester"},
+			    new Role {RoleName = "Ontwikkelaar"},
+			    new Role {RoleName = "Projectmanager"}
+		    };
+
+			dbContext.Roles.AddRange(roles);
 		    dbContext.SaveChanges();
 	    }
     }
