@@ -14,27 +14,32 @@ namespace TriageDotNetCore.Test.ContextTests
 
     public class EmployeeTests : IDisposable
     {
-        public EmployeeTests(EmployeeDbContext DbContext)
+        private EmployeeDbContext _db;
+
+        public EmployeeTests()
         {
-            _db = DbContext;
-            CleanDatabase();
+            var options = new DbContextOptionsBuilder<EmployeeDbContext>()
+                .UseInMemoryDatabase(databaseName: "TestDb")
+                .Options;
+
+            _db = new EmployeeDbContext(options);
+          
         }
 
-        private EmployeeDbContext _db;
 
         public void Dispose()
         {
-            CleanDatabase();
-            _db.Dispose();
+           _db.Dispose();
         }
-        private void CleanDatabase()
+        private void CheckDbExistence()
         {
-            _db.Database.ExecuteSqlCommand("Delete van Employee");
+            _db.Database.EnsureCreated();
         }
 
         [Fact]
         public void FirstTest()
         {
+            CheckDbExistence();
             Assert.True(true);
         }
     }
