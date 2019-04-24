@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriageDotNetCore", "TriageDotNetCore\TriageDotNetCore.csproj", "{68A08144-30E9-4AA1-9931-04437B0442AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriageDotNetCore", "TriageDotNetCore\TriageDotNetCore.csproj", "{68A08144-30E9-4AA1-9931-04437B0442AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriageDotNetCore.Test", "TriageDotNetCore.Test\TriageDotNetCore.Test.csproj", "{63522DAE-C6CA-4E3F-9414-0B25ABC6B7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{68A08144-30E9-4AA1-9931-04437B0442AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68A08144-30E9-4AA1-9931-04437B0442AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68A08144-30E9-4AA1-9931-04437B0442AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63522DAE-C6CA-4E3F-9414-0B25ABC6B7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63522DAE-C6CA-4E3F-9414-0B25ABC6B7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63522DAE-C6CA-4E3F-9414-0B25ABC6B7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63522DAE-C6CA-4E3F-9414-0B25ABC6B7E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
