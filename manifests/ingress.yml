@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "triagekubernetescluster"
+    labels:
+        app: "triagekubernetescluster"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: triagekubernetesclusterefe5-triagekubernetescluster.f233f6967e3c45cebea9.westeurope.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "triagekubernetescluster"
+                servicePort: 80
